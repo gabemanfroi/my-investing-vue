@@ -1,15 +1,9 @@
 <script lang="ts" setup></script>
 
 <template>
-  <div id="main-container">
+  <v-container height="100vh">
     <slot />
-  </div>
+  </v-container>
 </template>
 
-<style lang="scss" scoped>
-#main-container {
-  min-width: 100vw;
-  min-height: 100vh;
-  background: #f3f3f3;
-}
-</style>
+<style lang="scss" scoped></style>
