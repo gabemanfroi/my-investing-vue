@@ -1,0 +1,126 @@
+# This file was generated. Do not edit manually.
+
+schema {
+    query: Query
+    mutation: Mutation
+}
+
+"Indicates exactly one field must be supplied and this field must not be `null`."
+directive @oneOf on INPUT_OBJECT
+
+type Asset {
+    class: AssetClass!
+    id: ID!
+    ticker: String!
+}
+
+type AssetClass {
+    id: ID!
+    name: String!
+}
+
+type GetUserPortfolioResponse {
+    portfolio: Portfolio!
+}
+
+type ListAssetsClassesResponse {
+    assetClasses: [AssetClass]!
+}
+
+type ListAssetsResponse {
+    assets: [Asset]!
+}
+
+type LoginResponse {
+    token: String!
+}
+
+type Mutation {
+    createAsset(createAssetInput: CreateAssetInput): Boolean!
+    createAssetClass(createAssetClassInput: CreateAssetClassInput): Boolean!
+    createPortfolio: Portfolio!
+    login(loginRequest: LoginRequest!): LoginResponse!
+    register(registerRequest: RegisterRequest!): RegisterResponse!
+    registerOperation(registerOperationInput: RegisterOperationInput): Boolean!
+}
+
+type Operation {
+    asset: Asset!
+    createdAt: String!
+    price: Float!
+    quantity: Int!
+    type: OperationType!
+}
+
+type Portfolio {
+    assets: [PortfolioAsset!]!
+}
+
+type PortfolioAsset {
+    averagePrice: Float!
+    className: String!
+    cumulativeTotal: Float!
+    id: ID!
+    ticker: String!
+    totalAmount: Int!
+}
+
+type Query {
+    getUserPortfolio(getUserPortfolioRequest: GetUserPortfolioRequest): GetUserPortfolioResponse!
+    listAssets(listAssetsRequest: ListAssetsRequest): ListAssetsResponse
+    listAssetsClasses(listAssetsClassesRequest: ListAssetsClassesRequest!): ListAssetsClassesResponse
+}
+
+type RegisterResponse {
+    token: String!
+}
+
+enum OperationType {
+    BUY
+    SELL
+}
+
+input CreateAssetClassInput {
+    name: String!
+}
+
+input CreateAssetInput {
+    assetClassId: ID!
+    ticker: String!
+}
+
+input GetUserPortfolioRequest {
+    userId: Int!
+}
+
+input ListAssetsClassesRequest {
+    query: String!
+}
+
+input ListAssetsRequest {
+    query: String!
+}
+
+input LoginRequest {
+    email: String!
+    password: String!
+}
+
+input OperationInput {
+    assetId: ID!
+    price: Float!
+    quantity: Int!
+    type: OperationType!
+}
+
+input RegisterOperationInput {
+    operation: OperationInput!
+    portfolioId: ID!
+}
+
+input RegisterRequest {
+    email: String!
+    firstName: String!
+    lastName: String!
+    password: String!
+}
