@@ -13,6 +13,7 @@ export const useGetUserPortfolioQuery = () => {
             cumulativeTotal
             averagePrice
             className
+            currentPrice
           }
         }
       }

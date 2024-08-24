@@ -60,6 +60,7 @@ type PortfolioAsset {
     averagePrice: Float!
     className: String!
     cumulativeTotal: Float!
+    currentPrice: Float
     id: ID!
     ticker: String!
     totalAmount: Int!

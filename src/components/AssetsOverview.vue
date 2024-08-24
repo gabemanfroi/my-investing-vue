@@ -7,7 +7,8 @@ const headers = [
   { title: 'Class', value: 'className' },
   { title: 'Total Shares', value: 'totalAmount' },
   { title: 'Average Price', value: 'averagePrice' },
-  { title: 'Cumulative Total', value: 'cumulativeTotal' }
+  { title: 'Cumulative Total', value: 'cumulativeTotal' },
+  { title: 'Current Price', value: 'currentPrice' }
 ]
 
 const { result } = useGetUserPortfolioQuery()
