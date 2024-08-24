@@ -22,6 +22,7 @@
     "graphql": "^16.9.0",
     "graphql-tag": "^2.12.6",
     "pinia": "^2.1.7",
+    "vee-validate": "^4.13.2",
     "vue": "^3.4.29",
     "vue-router": "^4.3.3",
     "vuetify": "^3.7.0"
@@ -45,6 +46,7 @@
     "jsdom": "^24.1.0",
     "npm-run-all2": "^6.2.0",
     "prettier": "^3.2.5",
+    "sass-embedded": "^1.77.8",
     "typescript": "~5.4.0",
     "vite": "^5.3.1",
     "vite-plugin-vue-devtools": "^7.3.1",
