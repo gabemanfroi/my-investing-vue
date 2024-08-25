@@ -13,6 +13,7 @@ import App from './App.vue'
 import router from './router'
 import { setContext } from '@apollo/client/link/context'
 import { tokenUtil } from '@/modules/Shared/utils/tokenUtil'
+import { useUserStore } from '@/modules/Shared/stores/userStore'
 
 const httpLink = createHttpLink({
   uri: 'http://localhost:3000/graphql'
@@ -54,5 +55,8 @@ const vuetify = createVuetify({
 
 app.use(createPinia())
 app.use(router)
+
+const userStore = useUserStore()
+userStore.initialize()
 
 app.use(vuetify).mount('#app')
