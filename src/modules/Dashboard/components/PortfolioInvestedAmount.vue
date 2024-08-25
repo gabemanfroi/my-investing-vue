@@ -1,10 +1,10 @@
 <script lang="ts" setup>
 import { usePortfolioStore } from '@/modules/Shared/stores/portfolioStore'
-import { useGetPortfolioInvestedAmount } from '@/modules/Shared/composables/queries/useGetPortfolioInvestedAmount'
+import { useGetPortfolioInvestedAmountQuery } from '@/modules/Shared/composables/queries/useGetPortfolioInvestedAmountQuery'
 
 const { portfolio } = usePortfolioStore()
 
-const { result } = useGetPortfolioInvestedAmount(portfolio?.portfolioId as unknown as string)
+const { result } = useGetPortfolioInvestedAmountQuery(portfolio?.portfolioId as unknown as string)
 </script>
 
 <template>

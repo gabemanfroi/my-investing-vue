@@ -6,9 +6,12 @@ import { toTypedSchema } from '@vee-validate/zod'
 export function useRegisterOperationForm(submitCallback: (values: any) => void) {
   const schema = toTypedSchema(
     z.object({
-      asset: z.string().min(1, 'Asset is required'),
-      quantity: z.number().min(1, 'Quantity must be greater than 0'),
-      pricePerShare: z.number().min(1, 'Price per share must be greater than 0'),
+      asset: z.object({
+        id: z.string(),
+        ticker: z.string()
+      }),
+      quantity: z.string().min(1, 'Quantity must be greater than 0'),
+      pricePerShare: z.string().min(1, 'Price per share must be greater than 0'),
       type: z.string().min(1, 'Asset is required')
     })
   )
