@@ -102,7 +102,7 @@ export type Mutation = {
   __typename?: 'Mutation';
   createAsset: Scalars['Boolean']['output'];
   createAssetClass: Scalars['Boolean']['output'];
-  createPortfolio: Portfolio;
+  createPortfolio: Scalars['Boolean']['output'];
   login: LoginResponse;
   registerOperation: Scalars['Boolean']['output'];
   signUp: SignUpResponse;
@@ -157,6 +157,7 @@ export enum OperationType {
 export type Portfolio = {
   __typename?: 'Portfolio';
   assets: Array<PortfolioAsset>;
+  portfolioId: Scalars['ID']['output'];
 };
 
 export type PortfolioAsset = {
@@ -244,10 +245,12 @@ export type SignUpMutationVariables = Exact<{
 
 export type SignUpMutation = { __typename?: 'Mutation', signUp: { __typename?: 'SignUpResponse', token: string } };
 
-export type GetUserPortfolioQueryVariables = Exact<{ [key: string]: never; }>;
+export type GetUserPortfolioQueryVariables = Exact<{
+  getUserPortfolioRequest: GetUserPortfolioRequest;
+}>;
 
 
-export type GetUserPortfolioQuery = { __typename?: 'Query', getUserPortfolio: { __typename?: 'GetUserPortfolioResponse', portfolio: { __typename?: 'Portfolio', assets: Array<{ __typename?: 'PortfolioAsset', ticker: string, numberOfShares: number, cumulativeTotal: number, averagePrice: number, className: string, currentPrice?: number | null }> } } };
+export type GetUserPortfolioQuery = { __typename?: 'Query', getUserPortfolio: { __typename?: 'GetUserPortfolioResponse', portfolio: { __typename?: 'Portfolio', portfolioId: string, assets: Array<{ __typename?: 'PortfolioAsset', ticker: string, numberOfShares: number, cumulativeTotal: number, averagePrice: number, className: string, currentPrice?: number | null }> } } };
 
 export type ListAssetsQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -258,7 +261,7 @@ export type ListAssetsQuery = { __typename?: 'Query', listAssets?: { __typename?
 export const LoginDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"Login"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"email"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"password"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"login"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"loginRequest"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"email"},"value":{"kind":"Variable","name":{"kind":"Name","value":"email"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"password"},"value":{"kind":"Variable","name":{"kind":"Name","value":"password"}}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"token"}}]}}]}}]} as unknown as DocumentNode<LoginMutation, LoginMutationVariables>;
 export const RegisterOperationDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"RegisterOperation"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"operation"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"OperationInput"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"portfolioId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"registerOperation"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"registerOperationInput"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"operation"},"value":{"kind":"Variable","name":{"kind":"Name","value":"operation"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"portfolioId"},"value":{"kind":"Variable","name":{"kind":"Name","value":"portfolioId"}}}]}}]}]}}]} as unknown as DocumentNode<RegisterOperationMutation, RegisterOperationMutationVariables>;
 export const SignUpDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"SignUp"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"signUpRequest"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"SignUpRequest"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"signUp"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"signUpRequest"},"value":{"kind":"Variable","name":{"kind":"Name","value":"signUpRequest"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"token"}}]}}]}}]} as unknown as DocumentNode<SignUpMutation, SignUpMutationVariables>;
-export const GetUserPortfolioDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetUserPortfolio"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getUserPortfolio"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"getUserPortfolioRequest"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"userId"},"value":{"kind":"IntValue","value":"8"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"portfolio"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"assets"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"ticker"}},{"kind":"Field","name":{"kind":"Name","value":"numberOfShares"}},{"kind":"Field","name":{"kind":"Name","value":"cumulativeTotal"}},{"kind":"Field","name":{"kind":"Name","value":"averagePrice"}},{"kind":"Field","name":{"kind":"Name","value":"className"}},{"kind":"Field","name":{"kind":"Name","value":"currentPrice"}}]}}]}}]}}]}}]} as unknown as DocumentNode<GetUserPortfolioQuery, GetUserPortfolioQueryVariables>;
+export const GetUserPortfolioDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetUserPortfolio"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"getUserPortfolioRequest"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"GetUserPortfolioRequest"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getUserPortfolio"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"getUserPortfolioRequest"},"value":{"kind":"Variable","name":{"kind":"Name","value":"getUserPortfolioRequest"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"portfolio"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"assets"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"ticker"}},{"kind":"Field","name":{"kind":"Name","value":"numberOfShares"}},{"kind":"Field","name":{"kind":"Name","value":"cumulativeTotal"}},{"kind":"Field","name":{"kind":"Name","value":"averagePrice"}},{"kind":"Field","name":{"kind":"Name","value":"className"}},{"kind":"Field","name":{"kind":"Name","value":"currentPrice"}}]}},{"kind":"Field","name":{"kind":"Name","value":"portfolioId"}}]}}]}}]}}]} as unknown as DocumentNode<GetUserPortfolioQuery, GetUserPortfolioQueryVariables>;
 export const ListAssetsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"ListAssets"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"listAssets"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"listAssetsRequest"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"query"},"value":{"kind":"StringValue","value":"","block":false}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"assets"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"ticker"}},{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]}}]} as unknown as DocumentNode<ListAssetsQuery, ListAssetsQueryVariables>;
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
@@ -351,7 +354,7 @@ export type Mutation = {
   __typename?: 'Mutation';
   createAsset: Scalars['Boolean']['output'];
   createAssetClass: Scalars['Boolean']['output'];
-  createPortfolio: Portfolio;
+  createPortfolio: Scalars['Boolean']['output'];
   login: LoginResponse;
   registerOperation: Scalars['Boolean']['output'];
   signUp: SignUpResponse;
@@ -406,6 +409,7 @@ export enum OperationType {
 export type Portfolio = {
   __typename?: 'Portfolio';
   assets: Array<PortfolioAsset>;
+  portfolioId: Scalars['ID']['output'];
 };
 
 export type PortfolioAsset = {
@@ -493,10 +497,12 @@ export type SignUpMutationVariables = Exact<{
 
 export type SignUpMutation = { __typename?: 'Mutation', signUp: { __typename?: 'SignUpResponse', token: string } };
 
-export type GetUserPortfolioQueryVariables = Exact<{ [key: string]: never; }>;
+export type GetUserPortfolioQueryVariables = Exact<{
+  getUserPortfolioRequest: GetUserPortfolioRequest;
+}>;
 
 
-export type GetUserPortfolioQuery = { __typename?: 'Query', getUserPortfolio: { __typename?: 'GetUserPortfolioResponse', portfolio: { __typename?: 'Portfolio', assets: Array<{ __typename?: 'PortfolioAsset', ticker: string, numberOfShares: number, cumulativeTotal: number, averagePrice: number, className: string, currentPrice?: number | null }> } } };
+export type GetUserPortfolioQuery = { __typename?: 'Query', getUserPortfolio: { __typename?: 'GetUserPortfolioResponse', portfolio: { __typename?: 'Portfolio', portfolioId: string, assets: Array<{ __typename?: 'PortfolioAsset', ticker: string, numberOfShares: number, cumulativeTotal: number, averagePrice: number, className: string, currentPrice?: number | null }> } } };
 
 export type ListAssetsQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -594,8 +600,8 @@ export function useSignUpMutation(options: VueApolloComposable.UseMutationOption
 }
 export type SignUpMutationCompositionFunctionResult = VueApolloComposable.UseMutationReturn<SignUpMutation, SignUpMutationVariables>;
 export const GetUserPortfolioDocument = gql`
-    query GetUserPortfolio {
-  getUserPortfolio(getUserPortfolioRequest: {userId: 8}) {
+    query GetUserPortfolio($getUserPortfolioRequest: GetUserPortfolioRequest!) {
+  getUserPortfolio(getUserPortfolioRequest: $getUserPortfolioRequest) {
     portfolio {
       assets {
         ticker
@@ -605,6 +611,7 @@ export const GetUserPortfolioDocument = gql`
         className
         currentPrice
       }
+      portfolioId
     }
   }
 }
@@ -617,16 +624,19 @@ export const GetUserPortfolioDocument = gql`
  * When your component renders, `useGetUserPortfolioQuery` returns an object from Apollo Client that contains result, loading and error properties
  * you can use to render your UI.
  *
+ * @param variables that will be passed into the query
  * @param options that will be passed into the query, supported options are listed on: https://v4.apollo.vuejs.org/guide-composable/query.html#options;
  *
  * @example
- * const { result, loading, error } = useGetUserPortfolioQuery();
+ * const { result, loading, error } = useGetUserPortfolioQuery({
+ *   getUserPortfolioRequest: // value for 'getUserPortfolioRequest'
+ * });
  */
-export function useGetUserPortfolioQuery(options: VueApolloComposable.UseQueryOptions<GetUserPortfolioQuery, GetUserPortfolioQueryVariables> | VueCompositionApi.Ref<VueApolloComposable.UseQueryOptions<GetUserPortfolioQuery, GetUserPortfolioQueryVariables>> | ReactiveFunction<VueApolloComposable.UseQueryOptions<GetUserPortfolioQuery, GetUserPortfolioQueryVariables>> = {}) {
-  return VueApolloComposable.useQuery<GetUserPortfolioQuery, GetUserPortfolioQueryVariables>(GetUserPortfolioDocument, {}, options);
+export function useGetUserPortfolioQuery(variables: GetUserPortfolioQueryVariables | VueCompositionApi.Ref<GetUserPortfolioQueryVariables> | ReactiveFunction<GetUserPortfolioQueryVariables>, options: VueApolloComposable.UseQueryOptions<GetUserPortfolioQuery, GetUserPortfolioQueryVariables> | VueCompositionApi.Ref<VueApolloComposable.UseQueryOptions<GetUserPortfolioQuery, GetUserPortfolioQueryVariables>> | ReactiveFunction<VueApolloComposable.UseQueryOptions<GetUserPortfolioQuery, GetUserPortfolioQueryVariables>> = {}) {
+  return VueApolloComposable.useQuery<GetUserPortfolioQuery, GetUserPortfolioQueryVariables>(GetUserPortfolioDocument, variables, options);
 }
-export function useGetUserPortfolioLazyQuery(options: VueApolloComposable.UseQueryOptions<GetUserPortfolioQuery, GetUserPortfolioQueryVariables> | VueCompositionApi.Ref<VueApolloComposable.UseQueryOptions<GetUserPortfolioQuery, GetUserPortfolioQueryVariables>> | ReactiveFunction<VueApolloComposable.UseQueryOptions<GetUserPortfolioQuery, GetUserPortfolioQueryVariables>> = {}) {
-  return VueApolloComposable.useLazyQuery<GetUserPortfolioQuery, GetUserPortfolioQueryVariables>(GetUserPortfolioDocument, {}, options);
+export function useGetUserPortfolioLazyQuery(variables?: GetUserPortfolioQueryVariables | VueCompositionApi.Ref<GetUserPortfolioQueryVariables> | ReactiveFunction<GetUserPortfolioQueryVariables>, options: VueApolloComposable.UseQueryOptions<GetUserPortfolioQuery, GetUserPortfolioQueryVariables> | VueCompositionApi.Ref<VueApolloComposable.UseQueryOptions<GetUserPortfolioQuery, GetUserPortfolioQueryVariables>> | ReactiveFunction<VueApolloComposable.UseQueryOptions<GetUserPortfolioQuery, GetUserPortfolioQueryVariables>> = {}) {
+  return VueApolloComposable.useLazyQuery<GetUserPortfolioQuery, GetUserPortfolioQueryVariables>(GetUserPortfolioDocument, variables, options);
 }
 export type GetUserPortfolioQueryCompositionFunctionResult = VueApolloComposable.UseQueryReturn<GetUserPortfolioQuery, GetUserPortfolioQueryVariables>;
 export const ListAssetsDocument = gql`

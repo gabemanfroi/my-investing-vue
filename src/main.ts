@@ -14,6 +14,7 @@ import router from './router'
 import { setContext } from '@apollo/client/link/context'
 import { tokenUtil } from '@/modules/Shared/utils/tokenUtil'
 import { useUserStore } from '@/modules/Shared/stores/userStore'
+import { usePortfolioStore } from '@/modules/Shared/stores/portfolioStore'
 
 const httpLink = createHttpLink({
   uri: 'http://localhost:3000/graphql'
@@ -58,5 +59,7 @@ app.use(router)
 
 const userStore = useUserStore()
 userStore.initialize()
+const portfolioStore = usePortfolioStore()
+portfolioStore.initialize()
 
 app.use(vuetify).mount('#app')

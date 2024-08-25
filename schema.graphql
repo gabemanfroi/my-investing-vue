@@ -63,6 +63,7 @@ type Operation {
 
 type Portfolio {
     assets: [PortfolioAsset!]!
+    portfolioId: ID!
 }
 
 type PortfolioAsset {
