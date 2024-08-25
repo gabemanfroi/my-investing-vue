@@ -1,41 +1,20 @@
-// composables/useAssetForm.ts
 import { useField, useForm } from 'vee-validate'
 import type { Asset } from '@/gql/graphql'
+import { z } from 'zod'
+import { toTypedSchema } from '@vee-validate/zod'
 
 export function useRegisterOperationForm(submitCallback: (values: any) => void) {
+  const schema = toTypedSchema(
+    z.object({
+      asset: z.string().min(1, 'Asset is required'),
+      quantity: z.number().min(1, 'Quantity must be greater than 0'),
+      pricePerShare: z.number().min(1, 'Price per share must be greater than 0'),
+      type: z.string().min(1, 'Asset is required')
+    })
+  )
+
   const { handleSubmit, handleReset } = useForm({
-    validationSchema: {
-      asset(value: string) {
-        if (!value) {
-          return 'Asset is required'
-        }
-        return true
-      },
-      quantity(value: string | number) {
-        if (!value) {
-          return 'Quantity is required'
-        }
-        if (Number(value) <= 0) {
-          return 'Quantity must be greater than 0'
-        }
-        return true
-      },
-      pricePerShare(value: string | number) {
-        if (!value) {
-          return 'Price per share is required'
-        }
-        if (Number(value) <= 0) {
-          return 'Price per share must be greater than 0'
-        }
-        return true
-      },
-      type(value: string) {
-        if (!value) {
-          return 'Type is required'
-        }
-        return true
-      }
-    }
+    validationSchema: schema
   })
 
   const quantity = useField<number>('quantity')

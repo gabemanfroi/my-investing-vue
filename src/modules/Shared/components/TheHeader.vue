@@ -2,13 +2,14 @@
 import { ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { tokenUtil } from '@/modules/Shared/utils/tokenUtil'
+import { ROUTES } from '@/modules/Shared/core/constants/routes'
 
 const router = useRouter()
 const route = useRoute()
 
 const tabs = [
-  { name: 'Dashboard', value: 1, route: '/dashboard' },
-  { name: 'Operations', value: 2, route: '/operations' }
+  { name: 'Dashboard', value: 1, route: ROUTES.DASHBOARD.PATH },
+  { name: 'Operations', value: 2, route: ROUTES.OPERATIONS.PATH }
 ]
 
 const tab = ref(tabs.find((t) => t.route === route.path)?.value || 1)
@@ -22,7 +23,7 @@ watch(tab, (newVal) => {
 
 const logout = () => {
   tokenUtil.removeToken()
-  router.push('/login')
+  router.push(ROUTES.LOGIN.PATH)
 }
 </script>
 

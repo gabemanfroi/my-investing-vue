@@ -3,6 +3,7 @@ import { gql } from 'graphql-tag'
 import type { Mutation } from '@/gql/graphql'
 import { tokenUtil } from '@/modules/Shared/utils/tokenUtil'
 import { useRouter } from 'vue-router'
+import { ROUTES } from '@/modules/Shared/core/constants/routes'
 
 export const useLoginMutation = () => {
   const router = useRouter()
@@ -22,7 +23,7 @@ export const useLoginMutation = () => {
   onDone(({ data }) => {
     if (data?.login.token) {
       tokenUtil.setToken(data.login.token)
-      router.push('/dashboard')
+      router.push(ROUTES.DASHBOARD.PATH)
     }
   })
 
