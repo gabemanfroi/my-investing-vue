@@ -11,6 +11,8 @@ import { createPinia } from 'pinia'
 
 import App from './App.vue'
 import router from './router'
+import { setContext } from '@apollo/client/link/context'
+import { tokenUtil } from '@/modules/Shared/utils/tokenUtil'
 
 const httpLink = createHttpLink({
   uri: 'http://localhost:3000/graphql'
@@ -18,8 +20,18 @@ const httpLink = createHttpLink({
 
 const cache = new InMemoryCache()
 
+const authLink = setContext((_, { headers }) => {
+  const token = tokenUtil.getToken()
+  return {
+    headers: {
+      ...headers,
+      Authorization: token ? `Bearer ${token}` : ''
+    }
+  }
+})
+
 export const apolloClient = new ApolloClient({
-  link: httpLink,
+  link: authLink.concat(httpLink),
   cache,
   devtools: {
     enabled: true

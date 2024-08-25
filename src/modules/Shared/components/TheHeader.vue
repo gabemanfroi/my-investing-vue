@@ -8,8 +8,7 @@ const route = useRoute()
 
 const tabs = [
   { name: 'Dashboard', value: 1, route: '/dashboard' },
-  { name: 'Operations', value: 2, route: '/operations' },
-  { name: 'Settings', value: 3, route: '/settings' }
+  { name: 'Operations', value: 2, route: '/operations' }
 ]
 
 const tab = ref(tabs.find((t) => t.route === route.path)?.value || 1)

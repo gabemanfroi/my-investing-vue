@@ -2,7 +2,6 @@
 import { ref } from 'vue'
 import { useLoginMutation } from '@/modules/Shared/composables/mutations/useLoginMutation'
 import { useRouter } from 'vue-router'
-import { tokenUtil } from '@/modules/Shared/utils/tokenUtil'
 
 const { login } = useLoginMutation()
 
@@ -15,12 +14,6 @@ const handleLogin = () => {
   login({
     email: email.value,
     password: password.value
-  }).then((response) => {
-    if (response?.data?.login.token) {
-      console.log(response.data.login.token)
-      tokenUtil.setToken(response.data.login.token)
-      router.push('/dashboard')
-    }
   })
 }
 </script>
