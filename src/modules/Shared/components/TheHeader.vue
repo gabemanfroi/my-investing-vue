@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
+import { tokenUtil } from '@/modules/Shared/utils/tokenUtil'
 
 const router = useRouter()
 const route = useRoute()
@@ -19,15 +20,20 @@ watch(tab, (newVal) => {
     router.push(selectedTab.route)
   }
 })
+
+const logout = () => {
+  tokenUtil.removeToken()
+  router.push('/login')
+}
 </script>
 
 <template>
-  <v-row justify="space-between">
+  <v-row class="pa-4" justify="space-around">
     <v-col>
-      <h1>My-Investing</h1>
+      <h1 class="text-uppercase">My-Investing</h1>
     </v-col>
     <v-col>
-      <v-row class="nav-container" justify="end">
+      <v-row class="nav-container" justify="center">
         <v-tabs v-model="tab">
           <v-tab v-for="t in tabs" :key="t.value" :value="t.value">
             {{ t.name }}
@@ -35,11 +41,17 @@ watch(tab, (newVal) => {
         </v-tabs>
       </v-row>
     </v-col>
+    <v-col>
+      <v-row align-content="center" class="right-container fill-height" justify="end">
+        <v-btn elevation="0" icon="mdi-power" v-on:click="logout"></v-btn>
+      </v-row>
+    </v-col>
   </v-row>
 </template>
 
 <style lang="scss" scoped>
-.nav-container {
+.nav-container,
+.right-container {
   margin: unset;
 }
 </style>

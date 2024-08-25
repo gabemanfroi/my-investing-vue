@@ -17,6 +17,7 @@
   "dependencies": {
     "@apollo/client": "^3.11.4",
     "@graphql-codegen/cli": "^5.0.2",
+    "@mdi/font": "^7.4.47",
     "@vue/apollo-composable": "^4.2.1",
     "eslint-plugin-graphql": "^4.0.0",
     "graphql": "^16.9.0",

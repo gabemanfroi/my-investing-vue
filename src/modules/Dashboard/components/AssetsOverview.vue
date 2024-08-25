@@ -1,11 +1,11 @@
 <script lang="ts" setup>
-import { useGetUserPortfolioQuery } from '@/composables/queries/useGetUserPortfolioQuery'
+import { useGetUserPortfolioQuery } from '@/modules/Shared/composables/queries/useGetUserPortfolioQuery'
 import { computed } from 'vue'
 
 const headers = [
   { title: 'Asset', value: 'ticker' },
   { title: 'Class', value: 'className' },
-  { title: 'Total Shares', value: 'totalAmount' },
+  { title: 'Total Shares', value: 'numberOfShares' },
   { title: 'Average Price', value: 'averagePrice' },
   { title: 'Cumulative Total', value: 'cumulativeTotal' },
   { title: 'Current Price', value: 'currentPrice' }

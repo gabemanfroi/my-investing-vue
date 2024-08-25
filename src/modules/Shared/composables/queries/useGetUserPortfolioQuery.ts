@@ -9,7 +9,7 @@ export const useGetUserPortfolioQuery = () => {
         portfolio {
           assets {
             ticker
-            totalAmount
+            numberOfShares
             cumulativeTotal
             averagePrice
             className

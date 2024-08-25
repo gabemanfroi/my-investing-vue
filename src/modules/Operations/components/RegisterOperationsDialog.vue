@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import RegisterOperationForm from '@/components/RegisterOperationForm.vue'
 import { ref } from 'vue'
+import RegisterOperationForm from '@/modules/Operations/components/RegisterOperationForm.vue'
 
 const formRef = ref()
 const submitForm = () => {

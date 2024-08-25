@@ -1,12 +1,12 @@
 <script lang="ts" setup>
-import { useCreateTransactionForm } from '@/composables/forms/useCreateTransactionForm'
-import { useListAssetsQuery } from '@/composables/queries/useListAssetsQuery'
-import { useRegisterOperationMutation } from '@/composables/mutations/useRegisterOperationMutation'
+import { useListAssetsQuery } from '@/modules/Shared/composables/queries/useListAssetsQuery'
+import { useRegisterOperationMutation } from '@/modules/Shared/composables/mutations/useRegisterOperationMutation'
+import { useRegisterOperationForm } from '@/modules/Shared/composables/forms/useRegisterOperationForm'
 
 const { assets } = useListAssetsQuery()
 const { registerOperation } = useRegisterOperationMutation()
 
-const { quantity, pricePerShare, asset, submit, type, handleReset } = useCreateTransactionForm(
+const { quantity, pricePerShare, asset, submit, type, handleReset } = useRegisterOperationForm(
   (values) => {
     registerOperation({
       operation: {

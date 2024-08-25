@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import RegisterOperationsDialog from '@/components/RegisterOperationsDialog.vue'
+import RegisterOperationsDialog from '@/modules/Operations/components/RegisterOperationsDialog.vue'
 </script>
 
 <template>

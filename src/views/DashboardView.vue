@@ -1,5 +1,6 @@
 <script lang="ts" setup>
-import AssetsOverview from '@/components/AssetsOverview.vue'
+1
+import AssetsOverview from '@/modules/Dashboard/components/AssetsOverview.vue'
 </script>
 
 <template>

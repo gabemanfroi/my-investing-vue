@@ -19,6 +19,15 @@ type AssetClass {
     name: String!
 }
 
+type GetPortfolioInvestedAmountResponse {
+    totalInvestedAmount: Float!
+}
+
+type GetPortfolioVariationResponse {
+    percentageVariation: Float!
+    valueVariation: Float!
+}
+
 type GetUserPortfolioResponse {
     portfolio: Portfolio!
 }
@@ -62,11 +71,13 @@ type PortfolioAsset {
     cumulativeTotal: Float!
     currentPrice: Float
     id: ID!
+    numberOfShares: Int!
     ticker: String!
-    totalAmount: Int!
 }
 
 type Query {
+    getPortfolioInvestedAmount(getPortfolioInvestedAmountRequest: GetPortfolioInvestedAmountRequest): GetPortfolioInvestedAmountResponse!
+    getPortfolioVariation(getPortfolioVariationRequest: GetPortfolioVariationRequest): GetPortfolioVariationResponse!
     getUserPortfolio(getUserPortfolioRequest: GetUserPortfolioRequest): GetUserPortfolioResponse!
     listAssets(listAssetsRequest: ListAssetsRequest): ListAssetsResponse
     listAssetsClasses(listAssetsClassesRequest: ListAssetsClassesRequest!): ListAssetsClassesResponse
@@ -90,8 +101,16 @@ input CreateAssetInput {
     ticker: String!
 }
 
+input GetPortfolioInvestedAmountRequest {
+    portfolioId: ID!
+}
+
+input GetPortfolioVariationRequest {
+    portfolioId: ID!
+}
+
 input GetUserPortfolioRequest {
-    userId: Int!
+    userId: ID!
 }
 
 input ListAssetsClassesRequest {

@@ -2,7 +2,7 @@
 import { useField, useForm } from 'vee-validate'
 import type { Asset } from '@/gql/graphql'
 
-export function useCreateTransactionForm(submitCallback: (values: any) => void) {
+export function useRegisterOperationForm(submitCallback: (values: any) => void) {
   const { handleSubmit, handleReset } = useForm({
     validationSchema: {
       asset(value: string) {
