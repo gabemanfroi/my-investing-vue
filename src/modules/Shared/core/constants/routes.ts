@@ -19,4 +19,4 @@ export const ROUTES = {
     PATH: '/sign-up',
     NAME: 'sign-up'
   }
-} as const
+}

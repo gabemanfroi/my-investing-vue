@@ -24,7 +24,7 @@ const handleRegister = () => {
 <template>
   <v-container class="fill-height">
     <v-row align="center" justify="center">
-      <v-col cols="12" lg="4" md="6" sm="8">
+      <v-col cols="12" lg="5" md="6" sm="8">
         <v-card>
           <v-card-title class="justify-center text-uppercase">Login</v-card-title>
           <v-card-text>
