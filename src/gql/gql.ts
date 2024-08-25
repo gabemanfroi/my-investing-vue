@@ -13,7 +13,11 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  * Therefore it is highly recommended to use the babel or swc plugin for production.
  */
 const documents = {
-    "\nquery GetUserPortfolio {\n    getUserPortfolio(getUserPortfolioRequest: { userId: 8 }) {\n        portfolio {\n            assets {\n                id\n                ticker\n                className\n                totalAmount\n                averagePrice\n                cumulativeTotal\n            }\n        }\n    }\n}\n": types.GetUserPortfolioDocument,
+    "\n    mutation Login($email: String!, $password: String!) {\n      login(loginRequest: { email: $email, password: $password }) {\n        token\n      }\n    }\n  ": types.LoginDocument,
+    "\n    mutation RegisterOperation($operation: OperationInput!, $portfolioId: ID!) {\n      registerOperation(\n        registerOperationInput: { operation: $operation, portfolioId: $portfolioId }\n      )\n    }\n  ": types.RegisterOperationDocument,
+    "\n    mutation SignUp($signUpRequest: SignUpRequest!) {\n      signUp(signUpRequest: $signUpRequest) {\n        token\n      }\n    }\n  ": types.SignUpDocument,
+    "\n    query GetUserPortfolio {\n      getUserPortfolio(getUserPortfolioRequest: { userId: 8 }) {\n        portfolio {\n          assets {\n            ticker\n            numberOfShares\n            cumulativeTotal\n            averagePrice\n            className\n            currentPrice\n          }\n        }\n      }\n    }\n  ": types.GetUserPortfolioDocument,
+    "\n    query ListAssets {\n      listAssets(listAssetsRequest: { query: \"\" }) {\n        assets {\n          ticker\n          id\n        }\n      }\n    }\n  ": types.ListAssetsDocument,
 };
 
 /**
@@ -33,7 +37,23 @@ export function graphql(source: string): unknown;
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "\nquery GetUserPortfolio {\n    getUserPortfolio(getUserPortfolioRequest: { userId: 8 }) {\n        portfolio {\n            assets {\n                id\n                ticker\n                className\n                totalAmount\n                averagePrice\n                cumulativeTotal\n            }\n        }\n    }\n}\n"): (typeof documents)["\nquery GetUserPortfolio {\n    getUserPortfolio(getUserPortfolioRequest: { userId: 8 }) {\n        portfolio {\n            assets {\n                id\n                ticker\n                className\n                totalAmount\n                averagePrice\n                cumulativeTotal\n            }\n        }\n    }\n}\n"];
+export function graphql(source: "\n    mutation Login($email: String!, $password: String!) {\n      login(loginRequest: { email: $email, password: $password }) {\n        token\n      }\n    }\n  "): (typeof documents)["\n    mutation Login($email: String!, $password: String!) {\n      login(loginRequest: { email: $email, password: $password }) {\n        token\n      }\n    }\n  "];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n    mutation RegisterOperation($operation: OperationInput!, $portfolioId: ID!) {\n      registerOperation(\n        registerOperationInput: { operation: $operation, portfolioId: $portfolioId }\n      )\n    }\n  "): (typeof documents)["\n    mutation RegisterOperation($operation: OperationInput!, $portfolioId: ID!) {\n      registerOperation(\n        registerOperationInput: { operation: $operation, portfolioId: $portfolioId }\n      )\n    }\n  "];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n    mutation SignUp($signUpRequest: SignUpRequest!) {\n      signUp(signUpRequest: $signUpRequest) {\n        token\n      }\n    }\n  "): (typeof documents)["\n    mutation SignUp($signUpRequest: SignUpRequest!) {\n      signUp(signUpRequest: $signUpRequest) {\n        token\n      }\n    }\n  "];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n    query GetUserPortfolio {\n      getUserPortfolio(getUserPortfolioRequest: { userId: 8 }) {\n        portfolio {\n          assets {\n            ticker\n            numberOfShares\n            cumulativeTotal\n            averagePrice\n            className\n            currentPrice\n          }\n        }\n      }\n    }\n  "): (typeof documents)["\n    query GetUserPortfolio {\n      getUserPortfolio(getUserPortfolioRequest: { userId: 8 }) {\n        portfolio {\n          assets {\n            ticker\n            numberOfShares\n            cumulativeTotal\n            averagePrice\n            className\n            currentPrice\n          }\n        }\n      }\n    }\n  "];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n    query ListAssets {\n      listAssets(listAssetsRequest: { query: \"\" }) {\n        assets {\n          ticker\n          id\n        }\n      }\n    }\n  "): (typeof documents)["\n    query ListAssets {\n      listAssets(listAssetsRequest: { query: \"\" }) {\n        assets {\n          ticker\n          id\n        }\n      }\n    }\n  "];
 
 export function graphql(source: string) {
   return (documents as any)[source] ?? {};

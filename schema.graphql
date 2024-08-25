@@ -49,8 +49,8 @@ type Mutation {
     createAssetClass(createAssetClassInput: CreateAssetClassInput): Boolean!
     createPortfolio: Portfolio!
     login(loginRequest: LoginRequest!): LoginResponse!
-    register(registerRequest: RegisterRequest!): RegisterResponse!
     registerOperation(registerOperationInput: RegisterOperationInput): Boolean!
+    signUp(signUpRequest: SignUpRequest!): SignUpResponse!
 }
 
 type Operation {
@@ -83,7 +83,7 @@ type Query {
     listAssetsClasses(listAssetsClassesRequest: ListAssetsClassesRequest!): ListAssetsClassesResponse
 }
 
-type RegisterResponse {
+type SignUpResponse {
     token: String!
 }
 
@@ -138,7 +138,7 @@ input RegisterOperationInput {
     portfolioId: ID!
 }
 
-input RegisterRequest {
+input SignUpRequest {
     email: String!
     firstName: String!
     lastName: String!

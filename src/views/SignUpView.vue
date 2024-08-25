@@ -2,10 +2,22 @@
 import { useRouter } from 'vue-router'
 import { useSignUpForm } from '@/modules/Shared/composables/forms/useSignUpForm'
 import { ROUTES } from '@/modules/Shared/core/constants/routes'
+import { useSignUpMutation } from '@/modules/Shared/composables/mutations/useSignUpMutation'
 
 const router = useRouter()
 
-const { submit, email, lastName, firstName, password } = useSignUpForm((values) => {})
+const { signUp } = useSignUpMutation()
+
+const { submit, email, lastName, firstName, password } = useSignUpForm((values) => {
+  signUp({
+    signUpRequest: {
+      email: values.email,
+      password: values.password,
+      firstName: values.firstName,
+      lastName: values.lastName
+    }
+  })
+})
 
 const handleLogin = () => {
   router.push(ROUTES.LOGIN.PATH)
