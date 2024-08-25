@@ -19,7 +19,7 @@ export const useSignUpMutation = () => {
     }
   `)
 
-  onDone(({ data }) => {
+  onDone(async ({ data }) => {
     if (data?.signUp.token) {
       const decoded: { sub: string; email: string; firstName: string; lastName: string } =
         jwtDecode(data.signUp.token)
@@ -31,7 +31,7 @@ export const useSignUpMutation = () => {
       })
       setToken(data.signUp.token)
       tokenUtil.setToken(data.signUp.token)
-      router.push(ROUTES.DASHBOARD.PATH)
+      await router.push(ROUTES.DASHBOARD.PATH)
     }
   })
 

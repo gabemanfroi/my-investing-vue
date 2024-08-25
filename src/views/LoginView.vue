@@ -7,7 +7,6 @@ import { ROUTES } from '@/modules/Shared/core/constants/routes'
 const { login } = useLoginMutation()
 
 const { email, password, submit } = useLoginForm((values) => {
-  console.log(values)
   login({
     email: values.email,
     password: values.password

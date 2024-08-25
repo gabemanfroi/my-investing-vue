@@ -47,7 +47,7 @@ type LoginResponse {
 type Mutation {
     createAsset(createAssetInput: CreateAssetInput): Boolean!
     createAssetClass(createAssetClassInput: CreateAssetClassInput): Boolean!
-    createPortfolio: Portfolio!
+    createPortfolio: Boolean!
     login(loginRequest: LoginRequest!): LoginResponse!
     registerOperation(registerOperationInput: RegisterOperationInput): Boolean!
     signUp(signUpRequest: SignUpRequest!): SignUpResponse!
