@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { useGetUserPortfolioQuery } from '@/modules/Shared/composables/queries/useGetUserPortfolioQuery'
 import { computed } from 'vue'
+import { useUserStore } from '@/modules/Shared/stores/userStore'
 
 const headers = [
   { title: 'Asset', value: 'ticker' },
@@ -11,7 +12,9 @@ const headers = [
   { title: 'Current Price', value: 'currentPrice' }
 ]
 
-const { result } = useGetUserPortfolioQuery()
+const { user } = useUserStore()
+
+const { result } = useGetUserPortfolioQuery(user?.userId as unknown as number)
 
 const assets = computed(() => {
   return result.value?.getUserPortfolio.portfolio.assets ?? []
