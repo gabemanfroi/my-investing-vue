@@ -37,7 +37,7 @@ defineExpose({
           v-model="asset.value.value"
           :error-messages="asset.errorMessage.value"
           :items="assets"
-          item-title="ticker"
+          item-title="symbol"
           item-value="id"
           label="Asset"
         />

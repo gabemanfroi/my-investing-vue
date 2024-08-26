@@ -8,7 +8,7 @@ export function useListAssetsQuery() {
     query ListAssets {
       listAssets(listAssetsRequest: { query: "" }) {
         assets {
-          ticker
+          symbol
           id
         }
       }

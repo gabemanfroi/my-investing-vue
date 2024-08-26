@@ -7,7 +7,7 @@ import { tokenUtil } from '@/modules/Shared/utils/tokenUtil'
 import router from '@/router'
 
 const headers = [
-  { title: 'Asset', value: 'ticker' },
+  { title: 'Asset', value: 'symbol' },
   { title: 'Class', value: 'className' },
   { title: 'Total Shares', value: 'numberOfShares' },
   { title: 'Average Price', value: 'averagePrice' },
@@ -39,7 +39,7 @@ const assets = computed(() => {
   <v-card>
     <v-card-title class="text-uppercase">Assets</v-card-title>
     <v-card-text>
-      <v-data-table :headers="headers" :items="assets" item-key="ticker" />
+      <v-data-table :headers="headers" :items="assets" item-key="symbol" />
     </v-card-text>
   </v-card>
 </template>

@@ -13,7 +13,7 @@ export const useGetUserPortfolioQuery = (
         getUserPortfolio(getUserPortfolioRequest: $getUserPortfolioRequest) {
           portfolio {
             assets {
-              ticker
+              symbol
               numberOfShares
               cumulativeTotal
               averagePrice

@@ -11,7 +11,7 @@ directive @oneOf on INPUT_OBJECT
 type Asset {
     class: AssetClass!
     id: ID!
-    ticker: String!
+    symbol: String!
 }
 
 type AssetClass {
@@ -73,7 +73,7 @@ type PortfolioAsset {
     currentPrice: Float
     id: ID!
     numberOfShares: Int!
-    ticker: String!
+    symbol: String!
 }
 
 type Query {
@@ -99,7 +99,7 @@ input CreateAssetClassInput {
 
 input CreateAssetInput {
     assetClassId: ID!
-    ticker: String!
+    symbol: String!
 }
 
 input GetPortfolioInvestedAmountRequest {
